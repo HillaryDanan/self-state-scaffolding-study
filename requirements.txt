@@ -1,0 +1,12 @@
+# Self-State Scaffolding Study
+# Python 3.12 compatible — March 2026
+
+# API clients
+anthropic>=0.49.0
+openai>=1.68.0
+google-genai>=1.5.0
+
+# Analysis
+numpy>=2.1.0
+scipy>=1.14.0
+matplotlib>=3.10.0

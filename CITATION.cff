@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this study in your research, please cite it as below."
+authors:
+  - family-names: "Danan"
+    given-names: "Hillary"
+    orcid: ""
+title: "Self-State Scaffolding Study: Can External Scaffolding Produce Genuine Self-State in LLMs?"
+version: 1.0.0
+date-released: 2026-02-10
+url: "https://github.com/HillaryDanan/self-state-scaffolding-study"
+license: MIT
+type: software
+keywords:
+  - artificial-intelligence
+  - self-state
+  - calibration
+  - metacognition
+  - large-language-models
+  - abstraction
+  - cognitive-science
+references:
+  - type: software
+    authors:
+      - family-names: "Danan"
+        given-names: "Hillary"
+    title: "Abstraction-Intelligence: Exploring abstraction as a primitive of intelligent systems"
+    url: "https://github.com/HillaryDanan/abstraction-intelligence"
+    year: 2025
