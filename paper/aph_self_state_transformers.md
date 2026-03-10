@@ -8,35 +8,49 @@ Hillary Danan, PhD
 
 # Abstract
 
-Large language models (LLMs) based on transformer architectures have recently achieved remarkable performance in domains such as programming, mathematics and formal reasoning. These successes have prompted speculation that predictive language models may be approaching general intelligence. However, performance across cognitive domains remains uneven: systems that excel in deterministic reasoning often exhibit brittle failures in novelty detection, social inference and calibrated uncertainty.
+Large language models based on transformer architectures have recently achieved remarkable performance in domains such as programming, mathematics and formal reasoning. These successes have prompted speculation that predictive language models may be approaching general intelligence. However, performance across cognitive domains remains uneven: systems that excel in deterministic reasoning often exhibit brittle failures in novelty detection, social inference and calibrated uncertainty.
 
-This article proposes a parsimonious explanation grounded in the **Abstraction Primitive Hypothesis (APH)**. APH posits that intelligence develops through progressively deeper forms of abstraction culminating in **self-state**—a computational mechanism enabling systems to monitor and regulate their own reasoning.
+This article proposes a testable explanation grounded in the **Abstraction Primitive Hypothesis (APH)**. APH posits that intelligence develops through progressively deeper forms of abstraction culminating in **self-state**—a computational mechanism enabling systems to monitor and regulate their own reasoning.
 
 Deterministic domains provide unusually strong external signals of correctness. These signals allow systems lacking intrinsic self-state to approximate metacognitive regulation through environmental verification. We argue that this property explains the disproportionate success of contemporary AI systems in deterministic domains and predicts systematic failure patterns as verification signals weaken.
 
-Mapping APH onto transformer architectures reveals a striking structural correspondence: transformers efficiently implement the first three stages of abstraction—pattern extraction, symbol formation and recursive composition—while lacking intrinsic mechanisms corresponding to Stage 4 self-state. This relationship explains both the strengths and limitations of current AI systems and suggests that the next advances in artificial intelligence may depend on architectures capable of genuine self-regulation.
+Mapping APH onto transformer architectures reveals a structural correspondence: transformers efficiently implement the first three stages of abstraction—pattern extraction, symbol formation and recursive composition—while lacking intrinsic mechanisms corresponding to Stage 4 self-state. This relationship explains both the strengths and limitations of current AI systems and suggests that the next advances in artificial intelligence may depend on architectures capable of genuine self-regulation.
 
 ---
 
 # Introduction
 
-Artificial intelligence systems based on transformer architectures have recently demonstrated impressive performance across a wide range of formal reasoning tasks. Models trained through large-scale next-token prediction can now generate working software, perform multi-step symbolic reasoning and solve advanced mathematical problems.
+Recent progress in artificial intelligence has been driven by large language models trained using transformer architectures. These systems demonstrate strong performance in domains such as programming, mathematics and formal reasoning, yet exhibit persistent weaknesses in novelty detection, calibrated uncertainty and social inference.
 
-Despite these achievements, the distribution of performance across cognitive domains remains highly uneven. Systems that perform strongly on deterministic reasoning benchmarks frequently struggle with:
+This uneven performance distribution raises a scientific question:
 
-* calibrated uncertainty
-* novelty detection
-* figurative language
-* social reasoning
-* open-ended causal inference
+**What architectural properties determine where artificial reasoning systems succeed and where they fail?**
 
-This pattern raises a fundamental question: **why do artificial systems exhibit strong competence in some domains while remaining fragile in others?**
+The **Abstraction Primitive Hypothesis (APH)** provides a framework for addressing this question. APH proposes that intelligence emerges through a hierarchy of abstraction capacities culminating in **self-state**, a computational mechanism enabling systems to monitor and regulate their own reasoning.
 
-The **Abstraction Primitive Hypothesis (APH)** offers a potential explanation. APH proposes that intelligence emerges through a hierarchy of abstraction capacities culminating in **self-state**, a mechanism that enables systems to monitor and regulate their own reasoning under conditions of novelty.
+This paper advances three core hypotheses.
 
-In this framework, deterministic domains possess a critical property: they provide explicit signals of correctness that allow reasoning systems to detect and correct errors through environmental feedback. Such domains therefore allow systems lacking intrinsic self-monitoring to approximate reliable reasoning.
+**H1. Abstraction hierarchy hypothesis**
 
-This perspective yields a parsimonious explanation for the observed distribution of AI capabilities and suggests a principled framework for understanding the limits of current architectures.
+Intelligent reasoning systems progress through a hierarchy of abstraction capacities:
+
+pattern extraction → symbol formation → recursive composition → self-state
+
+**H2. Deterministic scaffolding hypothesis**
+
+Domains with explicit correctness criteria allow reasoning systems lacking intrinsic self-state to approximate metacognitive regulation through external verification.
+
+**H3. Transformer alignment hypothesis**
+
+Transformer architectures efficiently implement the first three stages of abstraction but lack mechanisms corresponding to Stage 4 self-state.
+
+If these hypotheses are correct, several empirical patterns should follow:
+
+* transformer systems should excel in symbolically structured domains
+* scaling should improve abstraction capacity but not self-state
+* reasoning failures should cluster in domains requiring intrinsic regulation
+
+The remainder of this paper develops these hypotheses and derives empirically testable predictions.
 
 ---
 
@@ -51,8 +65,8 @@ APH proposes four stages of abstraction capacity.
 | Stage 3 | Recursive composition | Construct hierarchical abstractions      |
 | Stage 4 | Self-state            | Monitor and regulate reasoning           |
 
-Stages 1–3 support the **construction of abstractions**.
-Stage 4 introduces **regulation of abstraction itself**.
+Stages 1–3 construct abstractions.
+Stage 4 regulates them.
 
 ---
 
@@ -64,8 +78,7 @@ Symbol Formation
 ↓
 Recursive Composition
 ↓
-Self-State
-(metacognitive regulation)
+Self-State (metacognitive regulation)
 
 Lower stages construct representations.
 Self-state regulates their reliability.
@@ -74,7 +87,7 @@ Self-state regulates their reliability.
 
 # Self-State as a Computational Operation
 
-Self-state can be operationalized through a feedback loop:
+Self-state can be formalized as a feedback loop.
 
 MAINTAIN(x)
 ↓
@@ -84,24 +97,17 @@ UPDATE(x | result)
 
 Where:
 
-MAINTAIN
-retain a representation across reasoning steps
+MAINTAIN — retain representations across reasoning steps
+COMPARE — evaluate processing relative to expectations
+UPDATE — modify representations in response to discrepancies
 
-COMPARE
-evaluate ongoing processing relative to stored representations
-
-UPDATE
-modify representations in response to discrepancies
-
-This loop resembles feedback control systems in engineering and the central executive component of working memory models.
+This structure resembles feedback control systems and the **central executive** component of working memory models.
 
 ---
 
 # Deterministic Domains as Cognitive Scaffolds
 
-Certain domains possess an unusual property: **explicit correctness criteria**.
-
-Examples include:
+Certain domains possess explicit correctness criteria.
 
 | Domain      | Verification mechanism  |
 | ----------- | ----------------------- |
@@ -110,11 +116,11 @@ Examples include:
 | Logic       | proof consistency       |
 | Physics     | dimensional constraints |
 
-These domains enable iterative reasoning correction:
+These domains support the loop:
 
 generate → test → revise
 
-The critical property is that the **test stage is supplied by the domain itself**.
+The **test step is provided by the domain itself**.
 
 ---
 
@@ -130,40 +136,36 @@ Error signal
 ↓
 Revision
 
-Deterministic domains supply the **comparison signal externally**.
+Deterministic domains provide the comparison signal externally.
 
 ---
 
 # External Verification as a Substitute for Self-State
 
-Within the APH framework, deterministic domains effectively provide the **COMPARE** step of the self-state loop.
-
-Instead of performing:
+Instead of performing
 
 MAINTAIN → COMPARE → UPDATE
 
-the system performs:
+systems operating in deterministic domains perform
 
 MAINTAIN (model)
 COMPARE (environment)
 UPDATE (model)
 
-This structure allows systems lacking intrinsic self-state to approximate metacognitive regulation.
-
-Consequently, systems possessing only Stages 1–3 abstraction capacity can appear highly capable in deterministic environments.
+Deterministic domains therefore partially substitute for intrinsic self-state.
 
 ---
 
 # Transformers as Partial Abstraction Systems
 
-Transformer architectures display a striking correspondence with the APH hierarchy.
+Transformer architectures map naturally onto the first three abstraction stages.
 
 ---
 
 # Figure 3 | Mapping APH to Transformer Architecture
 
 APH Stage 1 — Pattern Extraction
-→ Transformer embeddings (statistical feature compression)
+→ Embedding layers (statistical compression)
 
 APH Stage 2 — Symbol Formation
 → Token representations (discrete symbolic units)
@@ -174,67 +176,88 @@ APH Stage 3 — Recursive Composition
 APH Stage 4 — Self-State
 → largely absent
 
-Transformers efficiently implement the first three stages of abstraction.
-
 ---
 
 # Why Transformers Work
 
-Transformers excel in domains characterized by:
+Transformers perform well in domains characterized by:
 
-* discrete symbolic elements
-* compositional structure
-* recursive relations
-
-Language, programming languages and formal mathematics possess precisely these properties.
-
-| Domain           | Structural features             |
-| ---------------- | ------------------------------- |
-| Natural language | compositional syntax            |
-| Programming      | symbolic grammar                |
-| mathematics      | recursive symbolic manipulation |
-| logic            | rule-governed inference         |
-
-These domains are therefore naturally aligned with transformer architectures.
-
----
-
-# Why Strengths Cluster Where They Do
-
-APH predicts that systems implementing Stages 1–3 abstraction will perform best in **symbolically structured domains**.
-
-These include:
-
-* language
-* programming
-* formal mathematics
-
-These domains are characterized by:
-
-* discrete representations
+* discrete symbolic representations
 * compositional syntax
-* hierarchical structure
+* recursive structure
 
-These properties allow transformers to exploit their strengths in statistical pattern extraction and relational composition.
+| Domain           | Structural properties           |
+| ---------------- | ------------------------------- |
+| Natural language | compositional grammar           |
+| Programming      | symbolic syntax                 |
+| Mathematics      | recursive symbolic manipulation |
+| Logic            | rule-governed inference         |
 
----
-
-# Why Limitations Appear Where They Do
-
-Domains requiring **intrinsic reasoning regulation** expose the absence of Stage 4 self-state.
-
-Examples include:
-
-* novelty detection
-* calibrated uncertainty
-* social inference
-* open-ended causal reasoning
-
-In such contexts, the system must determine whether its reasoning is reliable **without external verification signals**.
+These domains align naturally with Stages 1–3 abstraction.
 
 ---
 
-# Figure 4 | Verification Gradient Across Domains
+# Why Language Became the First Domain of General AI
+
+Language possesses several properties that make it uniquely suitable for large-scale abstraction learning.
+
+1. Massive availability of training data
+2. Strong compositional structure
+3. High-level conceptual content
+4. Symbolic representation of knowledge
+
+Language therefore provides an unusually efficient substrate for **Stages 1–3 abstraction learning**.
+
+Domains such as robotics require grounded perception, sensorimotor interaction and sparse feedback signals, making large-scale abstraction learning significantly more difficult.
+
+Within APH, language therefore represents the domain in which large-scale abstraction learning first becomes computationally tractable.
+
+---
+
+# Scaling Laws and Abstraction Growth
+
+Large language models exhibit scaling laws: performance improves predictably with model size, data and compute.
+
+Within APH, scaling primarily enhances the first three stages of abstraction.
+
+Scaling improves:
+
+* pattern extraction resolution
+* stability of symbolic representations
+* depth of recursive composition
+
+---
+
+# Figure 4 | Scaling Under the Abstraction Hierarchy
+
+Model scale ↑
+
+Stage 1 improves
+Stage 2 stabilizes
+Stage 3 deepens
+
+---
+
+Stage 4 self-state
+(not improved by scale alone)
+
+---
+
+# Why Scaling Plateaus
+
+Scaling increases abstraction capacity but does not automatically produce **self-state regulation**.
+
+Self-state requires mechanisms enabling systems to:
+
+* maintain internal reasoning state
+* compare reasoning outcomes
+* update strategies
+
+These processes require architectural innovations beyond parameter scaling.
+
+---
+
+# Figure 5 | Verification Gradient Across Domains
 
 High verification
 
@@ -255,7 +278,7 @@ Reliance on intrinsic self-state increases as verification decreases.
 
 # Failure Signatures
 
-APH predicts distinct failure patterns when self-state is absent.
+When self-state is absent:
 
 | Signature         | Self-state systems         | Pattern-matching systems |
 | ----------------- | -------------------------- | ------------------------ |
@@ -264,43 +287,117 @@ APH predicts distinct failure patterns when self-state is absent.
 | Calibration       | confidence tracks accuracy | weak correlation         |
 | Capacity limits   | gradual degradation        | abrupt failure           |
 
-These patterns resemble several widely observed behaviors of contemporary LLM systems.
+These patterns resemble widely observed behaviors of contemporary LLM systems.
 
 ---
 
 # Architectural Self-State
 
-Modern AI systems often compensate for limited intrinsic self-state through architectural mechanisms such as:
+Modern AI systems approximate self-state through architectural mechanisms such as:
 
 * code execution environments
 * verification tools
-* iterative retry loops
+* retry loops
 * reinforcement learning feedback
 
-These mechanisms approximate **architectural self-state**, even if the underlying model lacks intrinsic metacognitive control.
+These mechanisms create **architectural self-state**, even when intrinsic metacognitive regulation is absent.
 
 ---
 
-# Predictions
+# Figure 6 | Unified APH–Transformer–Scaling Landscape
 
-The framework yields several empirical predictions.
+```
+          SELF-STATE (Stage 4)
+    metacognitive regulation layer
+                   │
+                   │
+    ┌──────────────┴──────────────┐
+    │                             │
+```
 
-Prediction 1
-Performance should decline as external verification signals weaken.
+Recursive Composition        External Verification
+(Stage 3 abstraction)        (deterministic domains)
+│
+Symbol Formation
+│
+Pattern Extraction
 
-Prediction 2
-Confidence–accuracy correlation should decrease as task novelty increases.
+Transformers implement the lower abstraction stack.
+Deterministic domains provide external verification.
+General intelligence likely requires intrinsic self-state.
 
-Prediction 3
-Persistent agent architectures possessing memory, objectives and environmental interaction may exhibit stronger calibration signatures than stateless language models.
+---
+
+# Empirical Research Program
+
+The Abstraction Primitive Hypothesis generates a set of experimentally testable predictions.
+
+## Experiment 1 — Novelty Calibration Test
+
+Construct reasoning tasks that fall outside known training distributions (e.g., randomized operators or synthetic formal systems).
+
+Measure:
+
+* accuracy
+* confidence estimates
+
+Prediction:
+
+Systems lacking self-state will show **weak correlation between confidence and accuracy** on genuinely novel tasks.
+
+---
+
+## Experiment 2 — Verification Gradient Study
+
+Evaluate reasoning performance across domains with varying verification strength.
+
+Domains:
+
+1. mathematics
+2. programming
+3. structured reasoning
+4. commonsense reasoning
+5. social reasoning
+
+Prediction:
+
+Performance should decline systematically as external verification decreases.
+
+---
+
+## Experiment 3 — Persistent Agent Comparison
+
+Compare stateless language models with **persistent agent architectures** possessing:
+
+* memory across episodes
+* explicit objectives
+* environmental feedback
+
+Prediction:
+
+Persistent agents should show improved **calibration and novelty detection**, reflecting partial emergence of self-state.
+
+---
+
+## Experiment 4 — Self-State Stress Test
+
+Introduce tasks requiring reasoning monitoring:
+
+* proof verification
+* solution checking
+* error detection
+
+Prediction:
+
+Models without self-state will perform significantly worse on **verification tasks than generation tasks**.
 
 ---
 
 # Conclusion
 
-Deterministic domains provide an environment in which reasoning systems can approximate metacognitive regulation through external verification signals. This property explains the disproportionate success of contemporary artificial intelligence systems in mathematics, programming and formal reasoning.
+Deterministic domains allow reasoning systems to approximate metacognitive regulation through external verification. This property explains the disproportionate success of contemporary artificial intelligence systems in mathematics, programming and formal reasoning.
 
-However, intelligence in open-ended environments requires more than the construction of abstractions. It requires the ability to monitor and regulate abstraction under conditions of novelty and uncertainty.
+However, intelligence in open-ended environments requires the ability to monitor and regulate abstraction under conditions of novelty and uncertainty.
 
 Within the Abstraction Primitive Hypothesis, this capability corresponds to **self-state**.
 
@@ -314,11 +411,11 @@ Baddeley, A. (2000). The episodic buffer: A new component of working memory. *Tr
 
 Flavell, J. (1979). Metacognition and cognitive monitoring. *American Psychologist.*
 
-Fodor, J. (1975). *The Language of Thought.*
+Jerry Fodor (1975). *The Language of Thought.*
 
 Fodor, J., & Pylyshyn, Z. (1988). Connectionism and cognitive architecture. *Cognition.*
 
-Friston, K. (2010). The free-energy principle. *Nature Reviews Neuroscience.*
+Karl Friston (2010). The free-energy principle. *Nature Reviews Neuroscience.*
 
 Xu, Q. et al. (2025). Large language models without grounding recover non-sensorimotor concept features. *Nature Human Behaviour.*
 
